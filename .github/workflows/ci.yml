@@ -1,0 +1,45 @@
+name: Run Automation Tests
+
+on:
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout source code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Install Playwright browsers
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      # Run tests and generate JSON & XML reports
+      - name: Run Cucumber tests
+        run: npm run test
+
+      # Generate HTML report from JSON
+      - name: Generate HTML Report
+        run: npm run report
+
+      # Upload HTML report as artifact
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-html-report
+          path: reports/html/

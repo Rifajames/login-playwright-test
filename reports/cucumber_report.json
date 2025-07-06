@@ -1,0 +1,155 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-functionality;successful-login-with-valid-credentials",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Successful login with valid credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 368555600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "the user is on the login page",
+            "match": {
+              "location": "features\\step-definitions\\login.step.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2437762900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "the user enters valid username and password",
+            "match": {
+              "location": "features\\step-definitions\\login.step.js:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 647009500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "the user should see the logout message",
+            "match": {
+              "location": "features\\step-definitions\\login.step.js:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 32029199
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 221054400
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@positive",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login-functionality;login-fails-with-invalid-credentials",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Login fails with invalid credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 353359999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 11,
+            "name": "the user is on the login page",
+            "match": {
+              "location": "features\\step-definitions\\login.step.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1829129700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 12,
+            "name": "the user enters invalid username and password",
+            "match": {
+              "location": "features\\step-definitions\\login.step.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 66880699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "the user should see an error message",
+            "match": {
+              "location": "features\\step-definitions\\login.step.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2623700
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 237702599
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@negative",
+            "line": 9
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-functionality",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login functionality",
+    "tags": [],
+    "uri": "features\\login.feature"
+  }
+]

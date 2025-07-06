@@ -8,7 +8,7 @@ const DashboardPage = require('../pages/DashboardPage');
 let screenshotCounter = 1;
 
 Before(async function () {
-  this.browser = await chromium.launch({ headless: false });
+  this.browser = await chromium.launch({ headless: true });
   const context = await this.browser.newContext();
   this.page = await context.newPage();
 
@@ -18,14 +18,16 @@ Before(async function () {
 });
 
 After(async function (scenario) {
-  if (scenario.result?.status === Status.FAILED) {
+  if (scenario.result?.status === Status.FAILED && this.page) {
     const screenshotPath = path.join(
       'reports',
-      `FAILED_${screenshotCounter++}_${scenario.pickle.name.replace(/\s+/g, '_')}.png`
+      `FAILED_${Date.now()}_${scenario.pickle.name.replace(/\s+/g, '_')}.png`
     );
     await this.page.screenshot({ path: screenshotPath, fullPage: true });
     console.log(`📸 Screenshot saved at: ${screenshotPath}`);
   }
 
-  await this.browser.close();
+  if (this.browser) {
+    await this.browser.close();
+  }
 });
