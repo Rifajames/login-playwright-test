@@ -8,7 +8,9 @@
     "report": "node report-generator.js",
     "test:html": "npm run test && npm run report",
     "test:positive": "cucumber-js --tags @positive --format json:reports/cucumber_report.json --format junit:reports/junit_report.xml && node report-generator.js",
-    "test:negative": "cucumber-js --tags @negative --format json:reports/cucumber_report.json --format junit:reports/junit_report.xml && node report-generator.js"
+    "test:negative": "cucumber-js --tags @negative --format json:reports/cucumber_report.json --format junit:reports/junit_report.xml && node report-generator.js",
+    "email:report": "node send-summary-email.js",
+    "test:ci": "npm run test && npm run report && npm run email:report"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +19,8 @@
     "@cucumber/cucumber": "^11.3.0",
     "multiple-cucumber-html-reporter": "^3.9.3",
     "playwright": "^1.53.2"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.4"
   }
 }
