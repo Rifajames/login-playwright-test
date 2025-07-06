@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<testsuite name="Cucumber" time="6.214" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-07-06T09:20:08.291Z">
+  <testcase classname="Login functionality" name="Successful login with valid credentials" time="3.71">
+    <system-out><![CDATA[Given the user is on the login page.........................................passed
+When the user enters valid username and password............................passed
+Then the user should see the logout message.................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Login functionality" name="Login fails with invalid credentials" time="2.498">
+    <system-out><![CDATA[Given the user is on the login page.........................................passed
+When the user enters invalid username and password..........................passed
+Then the user should see an error message...................................passed]]></system-out>
+  </testcase>
+</testsuite>
