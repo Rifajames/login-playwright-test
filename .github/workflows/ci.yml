@@ -11,43 +11,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout source code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      # Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Install Playwright browsers
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      # Run tests and generate JSON & XML reports
       - name: Run Cucumber tests
-        run: npm run test
+        id: run-tests
+        run: |
+          npm run test || echo "TESTS_FAILED=true" >> $GITHUB_ENV
 
-      # Generate HTML report from JSON
       - name: Generate HTML Report
+        if: always()
         run: npm run report
 
-      # Upload HTML report as artifact
       - name: Upload HTML report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-html-report
           path: reports/html/
 
       - name: Send summary email
+        if: always()
         run: npm run email:report
         env:
           GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           NODEMAILER_USER: ${{ secrets.EMAIL_USER }}
           NODEMAILER_PASS: ${{ secrets.EMAIL_PASS }}
           RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+
+      - name: Fail the job if tests failed
+        if: env.TESTS_FAILED == 'true'
+        run: exit 1
