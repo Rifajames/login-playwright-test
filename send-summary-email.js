@@ -2,11 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const nodemailer = require('nodemailer');
 
-// === CONFIG ===
-const GITHUB_RUN_URL = process.env.GITHUB_RUN_URL || 'https://github.com/your-org/your-repo/actions'; // fallback
-const EMAIL_FROM = 'your.email@gmail.com';
-const EMAIL_TO = 'recipient@example.com';
-const APP_PASSWORD = 'your_app_password';
+// === CONFIG FROM ENV ===
+const GITHUB_RUN_URL = process.env.GITHUB_RUN_URL || 'https://github.com/your-org/your-repo/actions';
+const EMAIL_FROM = process.env.NODEMAILER_USER;
+const EMAIL_TO = process.env.RECIPIENT_EMAIL || EMAIL_FROM; // default ke pengirim kalau tidak di-set
+const APP_PASSWORD = process.env.NODEMAILER_PASS;
 
 // === PARSE CUCUMBER REPORT ===
 const jsonPath = path.join(__dirname, 'reports', 'cucumber_report.json');
@@ -47,7 +47,6 @@ ${failed > 0 ? '❗ Failures:\n' + failureList.join('\n') : '✅ No Failures'}
 🔗 Full Report: ${GITHUB_RUN_URL}
 `;
 
-// === SEND EMAIL ===
 async function sendEmail() {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -60,7 +59,7 @@ async function sendEmail() {
   const mailOptions = {
     from: EMAIL_FROM,
     to: EMAIL_TO,
-    subject: 'E2E Test Report - Paper.id',
+    subject: '📊 E2E Test Report - Paper.id',
     text: summary,
     attachments: [
       {

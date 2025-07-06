@@ -48,6 +48,6 @@ jobs:
         run: npm run email:report
         env:
           GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          # Replace with GitHub Secret (jangan hardcode)
           NODEMAILER_USER: ${{ secrets.EMAIL_USER }}
           NODEMAILER_PASS: ${{ secrets.EMAIL_PASS }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
