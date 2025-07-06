@@ -5,7 +5,7 @@ class LoginPage {
 
   get usernameInput() { return '#username'; }
   get passwordInput() { return '#password'; }
-  get loginButton() { return '#submit'; }
+  get loginButton() { return '#submitt'; }
   get errorMessage() { return '.show'; }
   get logoutButton() {  return 'a.wp-block-button__link'; }
   get successMessage() { return 'h1.post-title'; }
