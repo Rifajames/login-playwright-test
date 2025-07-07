@@ -7,8 +7,8 @@ on:
     branches: [ development ]
   schedule:
     - cron: '0 0 * * *'   # 07:00 WIB (== 00:00 UTC)
-    - cron: '0 10 * * *'  # 17:00 WIB (== 10:00 UTC)
-    - cron: '15 13 * * *'   # 20:05 WIB
+    - cron: '40 10 * * *'  # 17:00 WIB (== 10:00 UTC)
+    - cron: '45 10 * * *'   # 20:05 WIB
 
 jobs:
   test:
